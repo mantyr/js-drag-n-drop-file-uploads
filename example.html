@@ -1,0 +1,43 @@
+    <section>
+        <h3>Example drag-n-drop file uploads</h3>
+        <div class="items">
+            <div class="item">
+                <div class="img"><div class="no_img">Перетащите фотографию сюда</div></div>
+                <input type="hidden" name="file_hash" value="">
+                <input type="hidden" name="file_type" value="">
+            </div>
+            <div class="item">
+                <div class="img"><div class="no_img">Перетащите фотографию сюда</div></div>
+                <input type="hidden" name="file_hash" value="">
+                <input type="hidden" name="file_type" value="">
+            </div>
+            <div class="item">
+                <div class="img"><div class="no_img">Перетащите фотографию сюда</div></div>
+                <input type="hidden" name="file_hash" value="">
+                <input type="hidden" name="file_type" value="">
+            </div>
+            <div class="item">
+                <div class="img"><div class="no_img">Перетащите фотографию сюда</div></div>
+                <input type="hidden" name="file_hash" value="">
+                <input type="hidden" name="file_type" value="">
+            </div>
+        </div>
+    </section>
+
+    {literal}
+    <script src="js/drag-n-drop.js"></script>
+    <script>
+        drag_n_drop({
+            id: '.items .item .img',
+            handler: 'upload.php',
+            is_one: true, // закачивать только один файл
+            _finish: function(data, event) {
+
+                this.this_obj.html('<img src="'+data.img.src+'">').removeClass('no_img');
+
+                this.this_obj.parents('.item').find('input[name=hash_image]').val(data.img.file_hash).change();
+                this.this_obj.parents('.item').find('input[name=image_type]').val(data.img.file_type);
+            }
+        });
+    </script>
+    {/literal}

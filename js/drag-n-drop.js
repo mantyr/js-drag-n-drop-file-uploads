@@ -19,6 +19,8 @@ function drag_n_drop(id, options) {
     if (typeof(options) == 'undefined' && typeof(id) == 'object') {
         options = id;
         id = false;
+    } else if (typeof(options) == 'object' && typeof(id) !== 'undefined') {
+        options['id'] = id;
     }
 
     var obj = {
